@@ -1,5 +1,7 @@
 package com.Stack;
 
+import java.util.NoSuchElementException;
+
 public class Queue<T> {
 	LinkedList<T> list = new LinkedList<T>();
 
@@ -10,6 +12,19 @@ public class Queue<T> {
 	 */
 	public void enqueue(T value) {
 		list.add(value);
+	}
+
+	/**
+	 * Pops an element from the stack represented by this list. In other words,
+	 * removes and returns the first element of this list
+	 *
+	 * @return the element at the front of this list (which is the top of the stack
+	 *         represented by this list)
+	 * @throws NoSuchElementException if this list is empty
+	 */
+	public Node<T> dequeue() {
+		return list.pop();
+
 	}
 
 	/**
