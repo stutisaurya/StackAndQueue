@@ -7,5 +7,11 @@ public class Runner {
 		stack.push(30);
 		stack.push(56);
 		stack.show();
+		System.out.println();
+		while (stack.peek() != null) {
+			System.out.println("First element of the stack is " + stack.peek());
+			stack.pop();
+			stack.show();
+		}
 	}
 }

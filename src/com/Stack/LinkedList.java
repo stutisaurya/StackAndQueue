@@ -1,5 +1,7 @@
 package com.Stack;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList<T> {
 	Node<T> head;
 
@@ -29,11 +31,13 @@ public class LinkedList<T> {
 	 */
 	public void show() {
 		Node<T> currNode = head;
-		while (currNode.next != null) {
+		if (currNode != null) {
+			while (currNode.next != null) {
+				System.out.println(currNode.value);
+				currNode = currNode.next;
+			}
 			System.out.println(currNode.value);
-			currNode = currNode.next;
 		}
-		System.out.println(currNode.value);
 	}
 
 	/**
@@ -70,13 +74,36 @@ public class LinkedList<T> {
 	}
 
 	/**
-	 * Removes the first element from this list, if it is present
+	 * Retrieves, but does not remove, the head (first element) of this list.
+	 *
+	 * @return the head of this list, or {@code null} if this list is empty
 	 */
-	public void pop() {
-		if (null != head) {
-			Node<T> newHead = head.next;
-			head = newHead;
-		}
+	public T peek() {
+		final Node<T> f = head;
+		return (f == null) ? null : f.value;
+	}
+
+	/**
+	 * Pops an element from the stack represented by this list. In other words,
+	 * removes and returns the first element of this list
+	 *
+	 * @return the element at the front of this list (which is the top of the stack
+	 *         represented by this list)
+	 * @throws NoSuchElementException if this list is empty
+	 */
+	public Node<T> pop() {
+		final Node<T> f = head;
+		if (f == null)
+			throw new NoSuchElementException();
+		return unlinkFirst(f);
+
+	}
+
+	public Node<T> unlinkFirst(Node<T> f) {
+		Node<T> removedItem = head;
+		Node<T> newHead = head.next;
+		head = newHead;
+		return removedItem;
 	}
 
 	/**
